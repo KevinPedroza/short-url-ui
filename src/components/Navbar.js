@@ -1,16 +1,17 @@
 import React from 'react';
+import Link from './Link';
 
 const NavBar = () => {
     return (
         <div className="ui labeled icon menu">
-            <a className="item">
+            <Link className="item" href="/">
                 <i className="eye icon"></i>
                 Top URL
-            </a>
-            <a className="item">
+            </Link>
+            <Link className="item" href="/new-url">
                 <i className="plus icon"></i>
                 New URL
-            </a>
+            </Link>
         </div>
     );
 };
