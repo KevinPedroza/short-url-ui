@@ -3,14 +3,15 @@ import UrlFormService from './../services/UrlFormService';
 import BaseConfig from './../BaseConfig';
 import './../styles/UrlForm.css';
 
-// We add the form to add a new URL
 const UrlForm = () => {
+    // We setting up the hooks for the interactions
     const [validUrl, setValidUrl] = useState(false);
     const [successUrl, setSuccessUrl] = useState(null);
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
     const [minifiedUrl, setminifiedUrl] = useState(null);
 
+    // We valid the URL on the client side too (It is being validated on the server side)
     const onInputUrl = (e) => {
         const url = e.target.value;
         setUrl(url);
@@ -20,10 +21,12 @@ const UrlForm = () => {
         regexp.test(url) ? setValidUrl(true) : setValidUrl(false); 
     };
 
+    // We render the error list
     const renderErrorList = errors.map((err, index) => {
-        return (<li key={ index }> {err} </li>);
+        return (<li key={ index }> { err } </li>);
     });
 
+    // We post the data to create the minified url
     const onSubmitUrl = async (e) => {
         e.preventDefault();
 
@@ -38,6 +41,7 @@ const UrlForm = () => {
         }
     };
 
+    // We return the JSX
     return (
 <       div className="ui cards">
             <div className="card">
@@ -59,7 +63,7 @@ const UrlForm = () => {
                             <div className="header">
                                 Your URL registration was successful.
                             </div>
-                            <p>URL Minified is: <a href={`${ BaseConfig.API_URL }${ minifiedUrl }`} target="_blank">{ minifiedUrl }</a> </p>
+                            <p>If you want to test your shortened Url, you can go by clicking on the next link: <a href={`${ BaseConfig.API_URL }${ minifiedUrl }`} target="_blank">{ minifiedUrl }</a> </p>
                         </div>
                     </form>
                 </div>

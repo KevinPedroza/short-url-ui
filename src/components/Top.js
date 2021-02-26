@@ -26,20 +26,6 @@ const Top = () => {
         fetchData();
     }, []);
 
-    //Adding pagination method
-    const paginationData = ({array, pageSize, pageNumber}) => {
-        const start = pageSize * (pageNumber - 1);
-        const end = pageSize * pageNumber;
-        console.log(array)
-        return {
-            *[Symbol.iterator]() {
-                for(let i = start; i < array.length && i < end; i++) {
-                    yield array[i]
-                }
-            }
-        }
-    }
-
     // Adding waiting for data
     if (!dataTop) {
         return <Loader />;
@@ -49,13 +35,14 @@ const Top = () => {
     const renderDataList = dataTop.map((data) => {
         return (
             <tr key={ data.id }>
-                <td className="single line"> { <a onClick={ fetchData } href={`${ BaseConfig.API_URL }${ data.minified_url }`} target="_blank"> { data.minified_url } </a> } </td>
-                <td className="single line"> { data.title === null ? 'No title assigned' : data.title } </td>
+                <td className="single line"> { <a onClick={ fetchData } href={`${ BaseConfig.API_URL }${ data.minified_url }`} target="_blank" rel="noreferrer"> { data.minified_url } </a> } </td>
+                <td className="single line"> { data.title === null ? 'No title assigned yet' : data.title } </td>
                 <td className="single line"> { data.click_count } </td>
             </tr>
         );
     });
 
+    // We validate if there is any data
     if (dataTop.length === 0) {
         return <DataNotFound />
     } else {
