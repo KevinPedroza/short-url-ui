@@ -35,9 +35,10 @@ const Top = () => {
     const renderDataList = dataTop.map((data) => {
         return (
             <tr key={ data.id }>
-                <td className="single line"> { <a onClick={ fetchData } href={`${ BaseConfig.API_URL }${ data.minified_url }`} target="_blank" rel="noreferrer"> { data.minified_url } </a> } </td>
-                <td className="single line"> { data.title === null ? 'No title assigned yet' : data.title } </td>
-                <td className="single line"> { data.click_count } </td>
+                <td> { <a onClick={ fetchData } href={`${ BaseConfig.API_URL }${ data.minified_url }`} target="_blank" rel="noreferrer"> { data.minified_url } </a> } </td>
+                <td> { data.full_url } </td>
+                <td> { data.title === null ? 'No title assigned yet' : data.title } </td>
+                <td> { data.click_count } </td>
             </tr>
         );
     });
@@ -47,9 +48,11 @@ const Top = () => {
         return <DataNotFound />
     } else {
         return (
-            <TopTable >
-                { renderDataList }
-            </TopTable>
+            <div className="ui container">
+                <TopTable >
+                    { renderDataList }
+                </TopTable>
+            </div>
         );
     }
 };

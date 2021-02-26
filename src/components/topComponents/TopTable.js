@@ -7,6 +7,7 @@ const TopTable = ({children}) => {
             <thead>
                 <tr>
                     <th className="single line">URL Minified</th>
+                    <th>Full URL</th>
                     <th>Title</th>
                     <th>Click Counts</th>
                 </tr>

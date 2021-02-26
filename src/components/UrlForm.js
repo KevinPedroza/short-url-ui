@@ -5,7 +5,6 @@ import './../styles/UrlForm.css';
 
 const UrlForm = () => {
     // We setting up the hooks for the interactions
-    const [validUrl, setValidUrl] = useState(false);
     const [successUrl, setSuccessUrl] = useState(null);
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
@@ -15,10 +14,6 @@ const UrlForm = () => {
     const onInputUrl = (e) => {
         const url = e.target.value;
         setUrl(url);
-
-        const regexp = (/^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/);
-
-        regexp.test(url) ? setValidUrl(true) : setValidUrl(false); 
     };
 
     // We render the error list
@@ -30,11 +25,21 @@ const UrlForm = () => {
     const onSubmitUrl = async (e) => {
         e.preventDefault();
 
+        const regexp = (/^(http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/);
+
+        setErrors(errors.splice(0, errors.length));
+
+        if (!regexp.test(url)) {
+            setSuccessUrl(false);
+            setErrors(errors.concat('Url is not valid, please check it out.'));
+            return;
+        }
+
         const result = await UrlFormService(url);
 
         if (result.data === undefined) {
             setSuccessUrl(false);
-            setErrors(result.full_url);
+            setErrors(errors.concat(result.full_url));
         } else {
             setSuccessUrl(true);
             setminifiedUrl(result.data.minified_url);
@@ -52,9 +57,9 @@ const UrlForm = () => {
                             <input onChange={ onInputUrl } type="text" name="url" placeholder="New URL" />
                         </div>
                         <div className="button-container">
-                            <button className="ui primary button" disabled={!validUrl} type="submit">Save</button>
+                            <button className="ui primary button" type="submit">Save</button>
                         </div>
-                        <div className={`ui error message ${ successUrl == false  ? 'show-content' : ''}`}>
+                        <div className={`ui error message ${ successUrl == false ? 'show-content' : ''}`}>
                             <ul className="list">
                                 { renderErrorList }
                             </ul>

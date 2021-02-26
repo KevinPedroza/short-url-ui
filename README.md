@@ -15,7 +15,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3500](http://localhost:3500) to view it in the browser.
 
 ## IMPORTANT NOTE
-This is setting up on the port 3500 if you are using a MAC-OS please change the
+This is setting up on the port 3500 for Windows if you are using a MAC-OS please change the
 start script on the package.json like so
 ```json
  "scripts": {
