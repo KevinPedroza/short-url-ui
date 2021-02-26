@@ -10,7 +10,7 @@ const UrlForm = () => {
     const [errors, setErrors] = useState([]);
     const [minifiedUrl, setminifiedUrl] = useState(null);
 
-    // We valid the URL on the client side too (It is being validated on the server side)
+    // We assign the value to the state variable
     const onInputUrl = (e) => {
         const url = e.target.value;
         setUrl(url);
@@ -21,7 +21,8 @@ const UrlForm = () => {
         return (<li key={ index }> { err } </li>);
     });
 
-    // We post the data to create the minified url
+    // We post the data to create the minified url, we also 
+    // valid the URL on the client side too (It is being validated on the server side)
     const onSubmitUrl = async (e) => {
         e.preventDefault();
 
