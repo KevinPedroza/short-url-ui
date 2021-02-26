@@ -4,7 +4,6 @@ import Top from './components/Top';
 import UrlForm from './components/UrlForm';
 import Route from './route/Route';
 
-
 const App = () => {
     return (
         <React.Fragment>
