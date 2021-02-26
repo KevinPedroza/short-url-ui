@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Description
+This project is using ReactJs here you can find more information about ReactJs [Create React App](https://github.com/facebook/create-react-app). 
+Also this is the fron-end part of the URL Shortener which was built in ROR.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Rememeber first to install the node modules running:
+### `npm install`
 
 ## Available Scripts
 
@@ -9,7 +12,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3500](http://localhost:3500) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
