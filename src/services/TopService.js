@@ -5,9 +5,13 @@ import BaseConfig from './../BaseConfig';
 const fetchTopData = () => {
     return axios.get(BaseConfig.API_URL, {
         headers: {
-            'Content-Type':  'application/json',
+            'Content-Type':  'application/json'
         }
-    });
+    }).catch(function (error) {
+        if (error.response) {
+          return error.response.data;
+        }
+      });;
 };
 
 export default fetchTopData;
